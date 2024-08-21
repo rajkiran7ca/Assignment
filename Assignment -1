@@ -1,0 +1,41 @@
+CREATE TABLE PollutionData (
+Country varchar(30) PRIMARY KEY , 
+Temperature int ,
+CO2_Emission decimal( 20,2),
+date int );
+ 
+-- 1. Highest Temperature countries --
+select  Country, Temperature from PollutionData
+ORDER BY Temperature DESC;
+
+--2. Lowest CO2_Emission countries  --
+select Country ,CO2_Emission from PollutionData
+ORDER BY CO2_Emission ASC;
+
+--3. Above specific value --
+select Country, Temperature from PollutionData
+where Temperature > 20 ;
+
+--4. CO2_Emission Available for the Year --4
+select Country ,CO2_Emission from PollutionData 
+where date = 2020 ;
+
+--5. Total num of Temperature --
+select count(*) Temperature from PollutionData ;
+
+--6. Counting the null values --
+select country from PollutionData 
+where date =2015 and Temperature is  null ;
+
+--7.  Average Temperature --
+select date, avg(Temperature) as Average_Temperature from PollutionData 
+group by date 
+order by date ;
+
+--8. Total CO2  --8
+select Sum(CO2_Emission) as Total_Emission from PollutionData ;
+
+
+-- 9. Sorting the Temperature ---
+select country ,Temperature from PollutionData
+order by Temperature desc ;
