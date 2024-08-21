@@ -1,0 +1,51 @@
+create table Departments(
+Department_id int Primary key ,
+Department_Name varchar(30)
+);
+
+create table Employees (
+Employee_id int Primary key ,
+FirstName varchar (20) ,
+SecondName varchar (20),
+Department_id int ,
+foreign key (Department_id) references Departments(Department_id)
+);
+
+create table orders(
+Order_id int Primary key ,
+Employee_id int ,
+OrderDate date ,
+TotalAmount int , 
+foreign key (Employee_id) references Employees(Employee_id)
+);
+
+
+insert into Departments 
+values (1, 'HR') , (2, 'IT' ) , ( 3,'ACCOUNTS' ) 
+;
+
+
+insert into Employees  
+values(1, 'Raj', 'kiran', 1 ), (2,'Ravi', 'kumar', 2 ), (3, 'Praba', 'karan', 2 );
+
+insert into orders 
+values
+( 1, 1, '2024-12-31', 100000 ) ,
+( 2, 2, '2023-12-31', 50000 ) ,
+( 3, 1, '2022-12-31', 20000) ;
+
+select * from orders ;
+select * from Departments ;
+select * from Employees;
+
+select Departments.Department_Name , TotalAmount
+from Departments 
+join Employees on Employees.employee_id = Departments.Department_id 
+join  orders on orders.Employee_id = Employees.Employee_id limit 2
+
+
+
+
+
+
+
